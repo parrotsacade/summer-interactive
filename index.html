@@ -262,32 +262,33 @@
 
       <div class="lg:w-[30%]  flex justify-center mt-6 ">
 
-        <form class="flex flex-col gap-2 px-10 py-6">
+        <div class="flex flex-col gap-2 px-10 py-6">
 
           <h1 class="text-lg font-serif">Have coupon?</h1>
 
           <div class="flex items-center ">
-            <input class="border p-2  rounded-md outline-none border-r-0 rounded-r-none placeholder:text-gray-600" type="text" placeholder="Coupon code">
-         <button class="bg-[#E527B2] cursor-pointer text-white p-2  px-4 rounded-md rounded-l-none border-l-0">Apply</button>
+            <input id="discountValue" class="border p-2  rounded-md outline-none border-r-0 rounded-r-none placeholder:text-gray-600" type="text" placeholder="Coupon code">
+         <button onclick={discountCal()} class="bg-[#E527B2] cursor-pointer text-white p-2  px-4 rounded-md rounded-l-none border-l-0">Apply</button>
           </div>
 
           <div class="mt-6 text-xl font-semibold">
-            <ul class="">
-              <li>1. Home Cooker</li>
+            <ul id="displayName" class="">
+              <!-- <li>1. Home Cooker</li>
               <li>2. Sports cates</li>
-              <li>3. Home Cooker</li>
+              <li>3. Home Cooker</li> -->
+
             </ul>
           </div>
 
           <ol class="mt-6 text-xl font-semibold">
-            <li>Total price: <span class="text-gray-500"> 257.00TK</span></li>
-            <li>Discount :  <span class="text-gray-500"> 51.00TK</span></li>
-            <li>Total: <span class="text-gray-500"> 205.00TK</span></li>
+            <li>Total price: <span id="totalPrice" class="text-gray-500">0 </span>Tk</li>
+            <li>Discount :  <span id="discount" class="text-gray-500">0</span>Tk</li>
+            <li>Total: <span id="total" class="text-gray-500"> 0</span>Tk</li>
           </ol>
 
           <button class="bg-[#E527B2] text-white py-2 rounded-sm mt-4 cursor-pointer">Make Purchase</button>
 
-        </form>
+        </div>
 
       </div>
 
