@@ -22,20 +22,55 @@
 let totalprice = 0;
 let discountPrice = 0;
 
+let shoppingArr = ["0"];
+
 const displayElement = document.getElementById("displayName");
 
 const totalPriceElement = document.getElementById("totalPrice");
 const discountElement = document.getElementById("discount");
 const totalElement = document.getElementById("total");
 
+const applyBtn = document.getElementById("applyBtn");
+
+const buyBtn = document.getElementById("buyBtn");
+
+buyBtn.disabled = true;
+applyBtn.disabled = true;
+buyBtn.classList.add("opacity-50");
+buyBtn.style.cursor = "not-allowed";
+applyBtn.classList.add("opacity-50");
+applyBtn.style.cursor = "not-allowed";
 
 function getUniversalData(card) {
   const name = card.dataset.name;
+  const id = card.dataset.id;
   const price = parseInt(card.dataset.price);
 
+  for (let i = 0; i < shoppingArr.length; i++) {
+    if (shoppingArr[i] === id) {
+      return alert("Already Exist");
+    }
+  }
+
+  shoppingArr.push(id);
+
+  // console.log(shoppingArr);
+  console.log(id, "id");
   totalprice += price;
-  console.log(name, price);
-  console.log("Totalprice", totalprice);
+  // console.log(name, price);
+  // console.log("Totalprice", totalprice);
+
+  if (totalprice > 0) {
+    buyBtn.disabled = false;
+    buyBtn.classList.remove("opacity-50");
+    buyBtn.style.cursor = "pointer";
+  }
+
+  if (totalprice >= 200) {
+    applyBtn.disabled = false;
+    applyBtn.classList.remove("opacity-50");
+    applyBtn.style.cursor = "pointer";
+  }
 
   let initialDiscountTotal = totalprice;
 
@@ -49,14 +84,18 @@ function getUniversalData(card) {
   totalElement.innerText = initialDiscountTotal;
 }
 
-
 function discountCal() {
   const inputDiscount = document.getElementById("discountValue").value;
-   console.log(inputDiscount);
-   console.log(totalprice);
-   discountPrice = parseInt(totalprice * (inputDiscount/100))
-   discountElement.innerText= discountPrice
-   console.log(discountPrice,"discountPrice");
-   totalElement.innerText = totalprice-discountPrice;
-   
+
+  // console.log(inputDiscount);
+  // console.log(totalprice);
+
+  if (inputDiscount === "SELL200") {
+    discountPrice = parseInt(totalprice * (2 / 100));
+    discountElement.innerText = discountPrice;
+    console.log(discountPrice, "discountPrice");
+    totalElement.innerText = totalprice - discountPrice;
+  } else {
+    alert("Invaild Coupon");
+  }
 }
